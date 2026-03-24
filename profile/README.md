@@ -23,9 +23,9 @@ The system integrates multiple traffic-related datasets (e.g., accidents, jams, 
 The platform follows a modular architecture:
 
 ### 1. Data Sources
-- **RSD (Ředitelství silnic a dálnic ČR)**  
+- Official data from ŘSD (Ředitelství silnic a dálnic ČR) 
 - Crowd-sourced traffic data (e.g., Waze: jams, closures, alerts)  
-- Police and official accident records  
+- Official police accident records  
 
 ### 2. Data Integration
 - Matching and merging heterogeneous datasets  
@@ -79,15 +79,15 @@ All data is standardized into a consistent schema to enable cross-source analysi
 
 ## Repository Structure
 
-| Repository | Description |
-|-----------|------------|
-| `analyticity-app` | Main application (core system, entry point) |
-| `analyticity-core` | Shared logic, domain models, and data processing |
-| `analyticity-experiments` | Research experiments, prototypes, and evaluations |
-| `analyticity-infra` | Infrastructure, deployment, and configuration |
-| `analyticity-docs` | Documentation and research-related materials |
+| Repository | Description | **Open to public**
+|-----------|------------| -----------|
+| `demo-application` | Main application (FE+BE) - only demo version on sample data | Public | 
+| `routing-server` | BE application for finding route between 2+ points in Brno | Public | 
+| `waze-data-analysis` | FE application, currently running on github pages, TO-BE-DELETED | Public | 
+| `PoliceAndWazeSpatioTemporalMatching` | Jupyter notebook focusing on matching police data to waze data in Brno | Private |  
 
-> The main entry point of the project is the **`analyticity-app`** repository.
+
+> The main entry point of the project is the **`demo-application`** repository.
 
 ---
 
@@ -120,7 +120,7 @@ The platform serves as both:
 
 This project has resulted in (and continues to support) scientific publications in the area of traffic data analysis and integration.
 
-Ondrušková, M., Hynek, J., & Burget, R. (2025).  **[Towards Street-Level Traffic Analysis Using Waze Crowdsourced Data.](https://ieeexplore.ieee.org/abstract/document/11037686/)**  *2025 Smart City Symposium Prague (SCSP)*. IEEE. 
+Ondrušková, M., Hynek, J., & Burget, R. (2025).  **[Towards Street-Level Traffic Analysis Using Waze Crowdsourced Data.](https://ieeexplore.ieee.org/abstract/document/11037686/)** *2025 Smart City Symposium Prague (SCSP)*. IEEE. 
 
 --- 
 
@@ -136,8 +136,18 @@ Email: iondruskova@fit.vutbr.cz
 This project is developed with the support of students contributing as part of their **Bachelor's and Master's theses**.
 
 Contributors (by year, alphabetically):
-- 2025, Bc. Matyáš Strelec – Routing Algorithm for Traffic Planning in Brno ([[thesis](https://www.vut.cz/studenti/zav-prace/detail/164964)])
-- 2025, Bc. Veronika Šimková – Analysis and Visualization of Traffic Accident Data ([[thesis](https://www.vut.cz/studenti/zav-prace/detail/164963)])
+- 2025, Bc. Matyáš Strelec – Routing Algorithm for Traffic Planning in Brno [thesis](https://www.vut.cz/studenti/zav-prace/detail/164964)
+- 2025, Bc. Veronika Šimková – Analysis and Visualization of Traffic Accident Data [thesis](https://www.vut.cz/studenti/zav-prace/detail/164963)
+
+---
+## Acknowledgements
+
+This work was carried out under the supervision of:
+
+- Ing. Jiří Hynek, Ph.D.  
+- doc. Radek Burget, Ph.D.  
+
+I would like to sincerely thank them for their guidance, patience, and continuous support throughout my PhD studies. Their insights, feedback, and willingness to discuss ideas have been invaluable not only for this project, but for my research as a whole.
 
 ---
 
