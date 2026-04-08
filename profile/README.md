@@ -82,6 +82,8 @@ All data is standardized into a consistent schema to enable cross-source analysi
 | Repository | Description | **Open to public**
 |-----------|------------| -----------|
 | `demo-application` | Main application (FE+BE) - only demo version on sample data | Public | 
+| `api` | API for sending data to FE | Public | 
+| `bp_ux_ui | FE application | Private | 
 | `routing-server` | BE application for finding route between 2+ points in Brno | Public | 
 | `waze-data-analysis` | FE application, currently running on github pages, TO-BE-DELETED | Public | 
 | `PoliceAndWazeSpatioTemporalMatching` | Jupyter notebook focusing on matching police data to waze data in Brno | Private |  
@@ -135,7 +137,14 @@ Email: iondruskova@fit.vutbr.cz
 
 This project is developed with the support of students contributing as part of their **Bachelor's and Master's theses**.
 
-Contributors (by year, alphabetically):
+Contributors (by year, alphabetically, current theses):
+- 2026, Bc. Štepán Bakaj 
+- 2026, Maksim Dubrovin
+- 2026, Bc. Patrik Haas
+- 2026, Bc. Adam Kaňkovský
+- 2026, Anna Shevchenko
+
+Contributors (by year, alphabetically, finished theses):
 - 2025, Bc. Matyáš Strelec – Routing Algorithm for Traffic Planning in Brno [thesis](https://www.vut.cz/studenti/zav-prace/detail/164964)
 - 2025, Bc. Veronika Šimková – Analysis and Visualization of Traffic Accident Data [thesis](https://www.vut.cz/studenti/zav-prace/detail/164963)
 
