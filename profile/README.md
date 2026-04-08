@@ -83,7 +83,7 @@ All data is standardized into a consistent schema to enable cross-source analysi
 |-----------|------------| -----------|
 | `demo-application` | Main application (FE+BE) - only demo version on sample data | Public | 
 | `api` | API for sending data to FE | Public | 
-| `bp_ux_ui | FE application | Private | 
+| `bp_ux_ui` | FE application | Private | 
 | `routing-server` | BE application for finding route between 2+ points in Brno | Public | 
 | `waze-data-analysis` | FE application, currently running on github pages, TO-BE-DELETED | Public | 
 | `PoliceAndWazeSpatioTemporalMatching` | Jupyter notebook focusing on matching police data to waze data in Brno | Private |  
