@@ -118,6 +118,18 @@ The platform serves as both:
 
 ---
 
+## Licensing
+
+All software published by this organization is licensed under the **[GNU Affero General Public License v3.0 or later](https://www.gnu.org/licenses/agpl-3.0.html)**.
+
+You are free to use, study, modify and redistribute it, including for academic research and teaching. One condition matters in particular: if you modify this software and make it available to others over a network — for example by running your own instance of the application or API — you must offer those users the complete corresponding source code of your modified version, under the same license.
+
+Each repository carries its own `LICENSE` file, which is the authoritative text. If you need different licensing terms, please get in touch.
+
+> **Note:** `routing-server` originates from a Bachelor's thesis by Bc. Matyáš Strelec and remains under its original MIT license.
+
+---
+
 ## Citation
 
 This project has resulted in (and continues to support) scientific publications in the area of traffic data analysis and integration.
