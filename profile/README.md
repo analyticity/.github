@@ -1,39 +1,177 @@
 # Analyticity
 
-Research software for integrated analysis of heterogeneous
-traffic data — combining vehicle positions, timetables,
-crowdsourced incident reports, weather and road-sensor data
-into a single analytical picture of a transport network.
+**Analyticity** is a data-driven application for analyzing, integrating, and simulating urban traffic data.  
+It combines heterogeneous data sources, advanced data modeling, and simulation capabilities to support decision-making in urban mobility and traffic management.
 
-Developed as part of doctoral research at the Faculty of
-Information Technology, Brno University of Technology.
-Currently deployed on data from Brno, the South Moravian
-Region and ORP Most.
+---
+
+## Overview
+
+Analyticity is designed as both:
+- a **research platform** for developing and validating data integration and traffic analysis methods, and  
+- a **production-oriented application** for real-world usage and experimentation.
+
+The system integrates multiple traffic-related datasets (e.g., accidents, jams, closures, alerts) into a unified model, enabling:
+- analysis of historical and real-time traffic data  
+- simulation of traffic scenarios  
+- visualization of urban mobility patterns  
+
+---
+
+## Architecture
+
+The platform follows a modular architecture:
+
+### 1. Data Sources
+- Official data from ŘSD (Ředitelství silnic a dálnic ČR) 
+- Crowd-sourced traffic data (e.g., Waze: jams, closures, alerts)  
+- Official police accident records  
+
+### 2. Data Integration
+- Matching and merging heterogeneous datasets  
+- Spatial-temporal alignment of events  
+- Data cleaning, validation, and enrichment  
+
+### 3. Unified Data Model
+Core entities:
+- Accidents  
+- Jams  
+- Closures  
+- Alerts  
+- Providers and event links  
+
+All data is standardized into a consistent schema to enable cross-source analysis.
+
+### 4. Data Storage
+- Time-series and relational database (e.g., TimescaleDB / PostgreSQL)  
+- Supports:
+  - recent (near real-time) data  
+  - aggregated historical data  
+
+### 5. Application Layer
+- Multi-instance application (different cities and scenarios)  
+- Provides:
+  - data exploration  
+  - analytics  
+  - visualization  
+
+### 6. Simulation Engine
+- Simulation of:
+  - accidents  
+  - closures and their impact  
+  - traffic scenarios  
+
+---
+
+## Key Features
+
+- Integration of heterogeneous traffic data sources into a unified system  
+- Advanced spatial-temporal matching of events across multiple providers  
+- Unified data model enabling consistent analysis across datasets  
+- Support for both real-time and historical traffic data processing  
+- Modular architecture allowing separation of data ingestion, processing, and application layers  
+- Simulation capabilities for evaluating the impact of traffic events (e.g., closures, accidents)  
+- Multi-city support with configurable data pipelines  
+- Reproducible data processing and experiment workflows  
+- Designed to bridge research and real-world application deployment  
+
+---
+
+## Repository Structure
+
+| Repository | Description | **Open to public**
+|-----------|------------| -----------|
+| `demo-application` | Main application (FE+BE) - only demo version on sample data | Public | 
+| `api` | API for sending data to FE | Public | 
+| `bp_ux_ui` | FE application | Private | 
+| `routing-server` | BE application for finding route between 2+ points in Brno | Public | 
+| `waze-data-analysis` | FE application, currently running on github pages, TO-BE-DELETED | Public | 
+| `PoliceAndWazeSpatioTemporalMatching` | Jupyter notebook focusing on matching police data to waze data in Brno | Private |  
+
+
+> The main entry point of the project is the **`demo-application`** repository.
+
+---
+
+## Application Demo
+
+A running demo of the application is available at:  
+https://analyticity.github.io/waze-data-analysis/
+
+**Note:**
+- The current demo represents an **earlier version** of the application  
+- It does **not use the internal Analyticity database**, but instead connects to the **City of Brno public API**  
+- Only the **Brno (Czech Republic)** use case is supported in this version  
+
+---
+
+## Research Context
+
+This project is developed as part of a **PhD research** focused on:
+- integration of heterogeneous traffic data sources  
+- spatial-temporal data matching  
+- urban traffic modeling and simulation  
+
+The platform serves as both:
+- an experimental environment  
+- and a validation tool for proposed methods  
+
+---
 
 ## Licensing
 
-All software published by this organization is licensed under
-the **[GNU Affero General Public License v3.0 or later][agpl]**.
+All software published by this organization is licensed under the **[GNU Affero General Public License v3.0 or later](https://www.gnu.org/licenses/agpl-3.0.html)**.
 
-You are free to use, study, modify and redistribute it,
-including for academic research and teaching. One condition
-matters in particular: if you modify this software and make it
-available to others over a network — for example by running
-your own instance of the dashboard or API — you must offer
-those users the complete corresponding source code of your
-modified version, under the same license.
+You are free to use, study, modify and redistribute it, including for academic research and teaching. One condition matters in particular: if you modify this software and make it available to others over a network — for example by running your own instance of the application or API — you must offer those users the complete corresponding source code of your modified version, under the same license.
 
-Each repository carries its own `LICENSE` file, which is the
-authoritative text. If you need different licensing terms,
-please get in touch.
+Each repository carries its own `LICENSE` file, which is the authoritative text. If you need different licensing terms, please get in touch.
 
-[agpl]: https://www.gnu.org/licenses/agpl-3.0.html
+> **Note:** `routing-server` originates from a Bachelor's thesis by Bc. Matyáš Strelec and remains under its original MIT license.
 
-## Citing
+---
 
-If you use this software in academic work, please cite it.
-Repositories include a `CITATION.cff` file where available.
+## Citation
+
+This project has resulted in (and continues to support) scientific publications in the area of traffic data analysis and integration.
+
+- Ondrušková, M., Hynek, J., & Burget, R. (2025).  **[Towards Street-Level Traffic Analysis Using Waze Crowdsourced Data.](https://ieeexplore.ieee.org/abstract/document/11037686/)** *2025 Smart City Symposium Prague (SCSP)*. IEEE. 
+
+--- 
 
 ## Contact
 
-Magdaléna Ondrušková — <DOPLNIT e-mail>
+Magdaléna Ondrušková  
+Brno University of Technology, Faculty of Information Technology  
+Email: iondruskova@fit.vutbr.cz  
+
+---
+## Contributing
+
+This project is developed with the support of students contributing as part of their **Bachelor's and Master's theses**.
+
+Contributors (by year, alphabetically, current theses):
+- 2026, Bc. Štepán Bakaj 
+- 2026, Maksim Dubrovin
+- 2026, Bc. Patrik Haas
+- 2026, Bc. Adam Kaňkovský
+- 2026, Anna Shevchenko
+
+Contributors (by year, alphabetically, finished theses):
+- 2025, Bc. Matyáš Strelec – Routing Algorithm for Traffic Planning in Brno [thesis](https://www.vut.cz/studenti/zav-prace/detail/164964)
+- 2025, Bc. Veronika Šimková – Analysis and Visualization of Traffic Accident Data [thesis](https://www.vut.cz/studenti/zav-prace/detail/164963)
+
+---
+## Acknowledgements
+
+This work was carried out under the supervision of:
+
+- Ing. Jiří Hynek, Ph.D.  
+- doc. Radek Burget, Ph.D.  
+
+I would like to sincerely thank them for their guidance, patience, and continuous support throughout my PhD studies. Their insights, feedback, and willingness to discuss ideas have been invaluable not only for this project, but for my research as a whole.
+
+---
+
+## Note
+
+This project is under active development as part of ongoing research.
