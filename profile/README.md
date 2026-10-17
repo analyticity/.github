@@ -81,27 +81,25 @@ All data is standardized into a consistent schema to enable cross-source analysi
 
 | Repository | Description | **Open to public**
 |-----------|------------| -----------|
-| `demo-application` | Main application (FE+BE) - only demo version on sample data | Public | 
-| `api` | API for sending data to FE | Public | 
-| `bp_ux_ui` | FE application | Private | 
-| `routing-server` | BE application for finding route between 2+ points in Brno | Public | 
-| `waze-data-analysis` | FE application, currently running on github pages, TO-BE-DELETED | Public | 
-| `PoliceAndWazeSpatioTemporalMatching` | Jupyter notebook focusing on matching police data to waze data in Brno | Private |  
+| `analyticity` | Central deployment repository - Docker Compose configuration per city | Public |
+| `api` | Central backend API with all backend logic, split into modules | Private |
+| `web` | Frontend application | Private |
+| `data-pipeline` | Data pipeline microservices - extractors, transformers, event linker, DB migrations | Private |
+| `central_analyticity_db` | Central database - cities, users, settings | Private |
+| `simulations` | Traffic simulation models and pipeline | Public |
 
+Every repository uses `main` as its base branch and `deploy` for what is deployed; students work in their own branches.
 
-> The main entry point of the project is the **`demo-application`** repository.
+Older and archived repositories are kept in [analyticity-old-repositories](https://github.com/analyticity-old-repositories).
+
+> The main entry point of the project is the **`analyticity`** repository.
 
 ---
 
 ## Application Demo
 
-A running demo of the application is available at:  
-https://analyticity.github.io/waze-data-analysis/
-
-**Note:**
-- The current demo represents an **earlier version** of the application  
-- It does **not use the internal Analyticity database**, but instead connects to the **City of Brno public API**  
-- Only the **Brno (Czech Republic)** use case is supported in this version  
+A running instance of the application (Brno) is available at:  
+https://dexter.fit.vutbr.cz/analyticity/brno/map
 
 ---
 
@@ -126,7 +124,7 @@ You are free to use, study, modify and redistribute it, including for academic r
 
 Each repository carries its own `LICENSE` file, which is the authoritative text. If you need different licensing terms, please get in touch.
 
-> **Note:** `routing-server` originates from a Bachelor's thesis by Bc. Matyáš Strelec and remains under its original MIT license.
+> **Note:** `routing-server` (archived in analyticity-old-repositories) originates from a Bachelor's thesis by Bc. Matyáš Strelec and remains under its original MIT license.
 
 ---
 
