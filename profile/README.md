@@ -1,105 +1,89 @@
 # Analyticity
 
-**Analyticity** is a data-driven application for analyzing, integrating, and simulating urban traffic data.  
-It combines heterogeneous data sources, advanced data modeling, and simulation capabilities to support decision-making in urban mobility and traffic management.
+**Analyticity** is a traffic analytics application for cities. It brings together Waze jams and driver reports, Czech Police accident records and NDIC road closures, places them on the OpenStreetMap road network and links related events (an accident and the jam it caused). Cities see the result on a map, in dashboards and in case studies of specific events.
+
+It is developed at the Faculty of Information Technology, Brno University of Technology, as a research platform for traffic data integration and as an application used with real data.
+
+**Live:** [Brno](https://dexter.fit.vutbr.cz/analyticity/brno/) · e.g. the case study [Pisárky without its tunnels](https://dexter.fit.vutbr.cz/analyticity/brno/case-studies/pisarky)
 
 ---
 
-## Overview
+## What it does
 
-Analyticity is designed as both:
-- a **research platform** for developing and validating data integration and traffic analysis methods, and  
-- a **production-oriented application** for real-world usage and experimentation.
-
-The system integrates multiple traffic-related datasets (e.g., accidents, jams, closures, alerts) into a unified model, enabling:
-- analysis of historical and real-time traffic data  
-- simulation of traffic scenarios  
-- visualization of urban mobility patterns  
+- **Map:** jams coloured per road segment, driver reports aggregated in hexagons, police accidents, closures; typical traffic and an accident heatmap.
+- **Dashboards:** accidents, jams, hazards and how they relate, compared with the previous period or year.
+- **Case studies:** what happened around one event, e.g. how jams moved when two tunnels in Brno closed, checked against a traffic model.
+- **Risky road sections:** clusters of accidents with a danger prediction.
+- **Administration:** cities, users, colours and personal API keys.
+- **One event, several sources:** the same accident reported by Waze and recorded by the police is one record; links between events are scored, not assumed.
 
 ---
 
 ## Architecture
 
-The platform follows a modular architecture:
+```mermaid
+flowchart LR
+    subgraph sources[Data sources]
+        W[Waze for Cities]
+        N[NDIC / ŘSD<br/>DATEX II]
+        P[Police CR]
+        O[OpenStreetMap]
+    end
+    subgraph pipeline["data-pipeline (per city)"]
+        X[extractors] --> K[(Kafka)] --> T[transformers<br/>dedup and merge] --> DB[(city database<br/>TimescaleDB + PostGIS)]
+        DB --> L[event linker] --> DB
+    end
+    subgraph app[Application]
+        A[api<br/>FastAPI] --> UI[web<br/>React]
+        C[(central database<br/>cities, users)] --> A
+    end
+    W & N & P --> X
+    O --> DB
+    DB --> A
+    DB -.-> S[simulations<br/>traffic model]
+```
 
-### 1. Data Sources
-- Official data from ŘSD (Ředitelství silnic a dálnic ČR) 
-- Crowd-sourced traffic data (e.g., Waze: jams, closures, alerts)  
-- Official police accident records  
+| Source | What it gives | How often |
+|---|---|---|
+| Waze for Cities | jams (lines with speed and delay), driver reports | every minute |
+| NDIC (ŘSD, DATEX II) | road closures and works; also queues, accidents and weather in the feed | pushed on change |
+| Police of the Czech Republic | accidents with cause and consequences, since 2016 | daily, published monthly |
+| OpenStreetMap | road network the events are matched to | on import |
 
-### 2. Data Integration
-- Matching and merging heterogeneous datasets  
-- Spatial-temporal alignment of events  
-- Data cleaning, validation, and enrichment  
-
-### 3. Unified Data Model
-Core entities:
-- Accidents  
-- Jams  
-- Closures  
-- Alerts  
-- Providers and event links  
-
-All data is standardized into a consistent schema to enable cross-source analysis.
-
-### 4. Data Storage
-- Time-series and relational database (e.g., TimescaleDB / PostgreSQL)  
-- Supports:
-  - recent (near real-time) data  
-  - aggregated historical data  
-
-### 5. Application Layer
-- Multi-instance application (different cities and scenarios)  
-- Provides:
-  - data exploration  
-  - analytics  
-  - visualization  
-
-### 6. Simulation Engine
-- Simulation of:
-  - accidents  
-  - closures and their impact  
-  - traffic scenarios  
+Each city has its own database; the services, the API and the web app serve every city. Waze data is shown publicly only in aggregated form, as its terms require.
 
 ---
 
-## Key Features
+## Repositories
 
-- Integration of heterogeneous traffic data sources into a unified system  
-- Advanced spatial-temporal matching of events across multiple providers  
-- Unified data model enabling consistent analysis across datasets  
-- Support for both real-time and historical traffic data processing  
-- Modular architecture allowing separation of data ingestion, processing, and application layers  
-- Simulation capabilities for evaluating the impact of traffic events (e.g., closures, accidents)  
-- Multi-city support with configurable data pipelines  
-- Reproducible data processing and experiment workflows  
-- Designed to bridge research and real-world application deployment  
+| Repository | What it is | Public |
+|---|---|---|
+| [`analyticity`](https://github.com/analyticity/analyticity) | **Start here.** Puts the application together (submodules), runs it locally (`./analyticity.sh local:up`) and deploys it | yes |
+| [`simulations`](https://github.com/analyticity/simulations) | Macroscopic traffic model of a city (AequilibraE), calibrated on traffic counts | yes |
+| `api` | Backend: map, dashboards, case studies, risky sections, raw tables, administration | no |
+| `web` | Frontend (React, TypeScript, Leaflet), Czech, Slovak and English | no |
+| `data-pipeline` | Extractors, transformers, event linker and database migrations (Java, Quarkus) | no |
+| `central_analyticity_db` | Central database: cities, users, settings, API keys | no |
+| `docs` | Internal documentation for the team and students: data, data model, guides | no |
 
----
-
-## Repository Structure
-
-| Repository | Description | **Open to public**
-|-----------|------------| -----------|
-| `analyticity` | Central deployment repository - Docker Compose configuration per city | Public |
-| `api` | Central backend API with all backend logic, split into modules | Private |
-| `web` | Frontend application | Private |
-| `data-pipeline` | Data pipeline microservices - extractors, transformers, event linker, DB migrations | Private |
-| `central_analyticity_db` | Central database - cities, users, settings | Private |
-| `simulations` | Traffic simulation models and pipeline | Public |
-
-Every repository uses `main` as its base branch and `deploy` for what is deployed; students work in their own branches.
+Every repository has `main` (development) and `deploy` (what runs on the server). Work goes through a branch and a pull request into `main`.
 
 Older and archived repositories are kept in [analyticity-old-repositories](https://github.com/analyticity-old-repositories).
 
-> The main entry point of the project is the **`analyticity`** repository.
-
 ---
 
-## Application Demo
+## For students
 
-A running instance of the application (Brno) is available at:  
-https://dexter.fit.vutbr.cz/analyticity/brno/map
+Working on a thesis with Analyticity data or code:
+
+1. **Ask for access.** Write to the contact below with your university e-mail (`@vutbr.cz`), your topic and your GitHub account.
+2. **Your personal API key arrives by e-mail.** With it you download the data from the API (a Python script does it day by day); you do not need an account on the server.
+3. **Read the internal documentation** (`docs` repository, access comes together with the key): where the data comes from, what is missing, how the tables are built, how to run everything locally.
+4. **Code changes** go through a branch and a pull request into `main` of the repository concerned.
+
+> **Deployment is not for students.** Releases to `deploy` and changes on the production server are done only by the maintainers.
+
+Waze for Cities data must not be published: keep downloaded data out of public repositories and thesis attachments, and report aggregated results only.
 
 ---
 
