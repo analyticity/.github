@@ -72,21 +72,6 @@ Older and archived repositories are kept in [analyticity-old-repositories](https
 
 ---
 
-## For students
-
-Working on a thesis with Analyticity data or code:
-
-1. **Ask for access.** Write to the contact below with your university e-mail (`@vutbr.cz`), your topic and your GitHub account.
-2. **Your personal API key arrives by e-mail.** With it you download the data from the API (a Python script does it day by day); you do not need an account on the server.
-3. **Read the internal documentation** (`docs` repository, access comes together with the key): where the data comes from, what is missing, how the tables are built, how to run everything locally.
-4. **Code changes** go through a branch and a pull request into `main` of the repository concerned.
-
-> **Deployment is not for students.** Releases to `deploy` and changes on the production server are done only by the maintainers.
-
-Waze for Cities data must not be published: keep downloaded data out of public repositories and thesis attachments, and report aggregated results only.
-
----
-
 ## Research Context
 
 This project is developed as part of a **PhD research** focused on:
@@ -131,14 +116,21 @@ Email: iondruskova@fit.vutbr.cz
 
 This project is developed with the support of students contributing as part of their **Bachelor's and Master's theses**.
 
-Contributors (by year, alphabetically, current theses):
-- 2026, Bc. Štepán Bakaj 
+Current theses (2026/27, alphabetically):
+- Márton Bugár – Detection of recurring patterns and anomalies in traffic data (Bachelor's thesis)
+- Adam Ďurica – Analysis and visualisation of the impact of weather on traffic (Bachelor's thesis)
+- Bc. Adrián Horváth – Time-resolved traffic simulation and modelling the impact of extraordinary events (Master's thesis)
+- Bc. Andrea Michlíková – Automatic generation of traffic zones for a macroscopic traffic model (Master's thesis)
+- Bc. Filip Polomski – Analysis and visualisation of the impact of car traffic on public transport in Brno (Master's thesis)
+- Erik Svitaň – Propagation of traffic events in the road network (Bachelor's thesis)
+- David Tomaško – Automatic categorisation of city events and analysis of their impact on traffic (Bachelor's thesis)
+
+Finished theses (by year, alphabetically):
+- 2026, Bc. Štěpán Bakaj
 - 2026, Maksim Dubrovin
 - 2026, Bc. Patrik Haas
 - 2026, Bc. Adam Kaňkovský
 - 2026, Anna Shevchenko
-
-Contributors (by year, alphabetically, finished theses):
 - 2025, Bc. Matyáš Strelec – Routing Algorithm for Traffic Planning in Brno [thesis](https://www.vut.cz/studenti/zav-prace/detail/164964)
 - 2025, Bc. Veronika Šimková – Analysis and Visualization of Traffic Accident Data [thesis](https://www.vut.cz/studenti/zav-prace/detail/164963)
 
