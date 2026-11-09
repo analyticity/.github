@@ -126,11 +126,11 @@ Current theses (2026/27, alphabetically):
 - David Tomaško – Automatic categorisation of city events and analysis of their impact on traffic (Bachelor's thesis)
 
 Finished theses (by year, alphabetically):
-- 2026, Bc. Štěpán Bakaj
-- 2026, Maksim Dubrovin
-- 2026, Bc. Patrik Haas
-- 2026, Bc. Adam Kaňkovský
-- 2026, Anna Shevchenko
+- 2026, Ing. Štěpán Bakaj
+- 2026, Bc. Maksim Dubrovin
+- 2026, Ing. Patrik Haas
+- 2026, Ing. Adam Kaňkovský
+- 2026, Bc. Anna Shevchenko
 - 2025, Bc. Matyáš Strelec – Routing Algorithm for Traffic Planning in Brno [thesis](https://www.vut.cz/studenti/zav-prace/detail/164964)
 - 2025, Bc. Veronika Šimková – Analysis and Visualization of Traffic Accident Data [thesis](https://www.vut.cz/studenti/zav-prace/detail/164963)
 
